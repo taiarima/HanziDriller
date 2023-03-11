@@ -1,5 +1,5 @@
 package tai.arima.hanzidriller;
-
+// Comment
 import java.awt.Dimension;
 
 import javax.swing.event.ListSelectionEvent;
@@ -852,6 +852,14 @@ public class HanziDriller extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("About");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HanziAbout aboutPage = new HanziAbout();
+		        aboutPage.setModalityType(ModalityType.APPLICATION_MODAL);
+		        aboutPage.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		        aboutPage.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Troubleshoot");
@@ -1075,6 +1083,43 @@ public class HanziDriller extends JFrame {
 	    });
 		
 	}
+	
+public class HanziAbout extends JDialog {
+		
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		
+		HanziAbout() {
+			setResizable(false);
+			setTitle("About HanziDriller");
+			ImageIcon image = new ImageIcon("kanjilogo.png");
+			setIconImage(image.getImage());
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			getContentPane().setLayout(null);
+			
+			JLabel windowTitleLabel = new JLabel("About");
+			windowTitleLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+			windowTitleLabel.setBounds(185, 11, 100, 50);
+			windowTitleLabel.setHorizontalAlignment(JLabel.CENTER);
+			getContentPane().add(windowTitleLabel);
+			
+			JLabel programDetailsLabel = new JLabel("HanziDriller Program ©2022-2023 Tai Arima");
+			programDetailsLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			programDetailsLabel.setBounds(10, 75, 350, 20);
+			getContentPane().add(programDetailsLabel);
+			
+			setSize(new Dimension(500,570));
+			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); // makes sure window is centered
+			this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+			setVisible(true);
+			
+			
+		}
+}
 
 	public class HanziSettings extends JDialog {
 		
@@ -1525,9 +1570,6 @@ public class HanziExistingUser extends JDialog {
 						return;
 					}
 					try {
-						// could do something like pass the username through the global variable,
-						// go to initialize deck, if existinguser = true
-						// create the HanziGameState and load the values given the user name
 						restoringState = true;
 						initialize();
 						dispose();

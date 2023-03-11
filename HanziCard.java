@@ -3,7 +3,7 @@ package tai.arima.hanzidriller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-
+// Comment
 public class HanziCard implements Serializable {
 	
 	/**
